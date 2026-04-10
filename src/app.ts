@@ -1,0 +1,18 @@
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { handlePayment } from './controllers/payment.controller.js';
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+
+app.post('/api/v1/payments', handlePayment);
+
+app.listen(PORT, () => {
+  console.log(`🚀 Gateway corriendo en http://localhost:${PORT}`);
+});
